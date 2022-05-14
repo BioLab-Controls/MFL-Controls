@@ -1,21 +1,26 @@
 #ifndef MODULEINPUT
 #define MODULEINPUT
 
-#include<fstream>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
-#define FILE outputdata
+#define FILE "testdata.csv"
 
 class _moduleInput {
-    private:
-        double convert_to_double(string data);
+    public:
+        //Constructor 
+        _moduleInput();
 
-        double readFile();
+        void readFile();
 
     public:
         double getFlowData();
 
         double getPressureData();
 
+    private:
+        double convert_to_double(std::string data);
 
 };
 
