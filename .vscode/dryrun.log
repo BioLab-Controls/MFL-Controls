@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/nyameaama/Documents/MFL-Controls'
+make: Leaving directory `/Users/nyameaama/Documents/MFL-Controls'
+ 
+make: *** No targets.  Stop.
+

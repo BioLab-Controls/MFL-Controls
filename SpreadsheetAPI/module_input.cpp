@@ -6,7 +6,31 @@ _moduleInput::_moduleInput(){
 }
 
 double _moduleInput::convert_to_double(std::string data){
+    return std::stod(data);
+}
 
+std::string _moduleInput::sortData(std::string data,uint8_t unit){
+    //TABULAR FORMAT
+    //  COLUMN 1 | COLUMN 2
+    //  Pressure | Flow
+    uint8_t index = 0;
+    std::string flow;
+    std::string pressure;
+    for(uint8_t i = 0; i < data.length();i++){
+        if(data[i] == ','){
+            index = i;
+        }
+    }
+    for(uint8_t j = 0; j <= data.length();j++){
+        if(j < index){
+            flow += data[j];
+        }
+        if(j > index){
+            pressure += data[j];
+        }
+    }
+    std::string returned = (unit == 1) ? flow : pressure;
+    return returned;
 }
 
 void _moduleInput::readFile(){
@@ -35,17 +59,22 @@ void _moduleInput::readFile(){
         getline(file,lastLine);                      // Read the current line
         Values_raw = lastLine;
         file.close();
-
     }
 }
 
 double _moduleInput::getFlowData(){
     //Read 
-    double moduel = 5;
-    return 0;
+    std::string getData = sortData(Values_raw,FLOW);
+    double FLOW_Return = convert_to_double(getData);
+    return FLOW_Return;
 }
 
 double _moduleInput::getPressureData(){
-    double moduel = 5;
-    return 0;
+    std::string getData = sortData(Values_raw,PRESSURE);
+    double PRESSURE_Return = convert_to_double(getData);
+    return PRESSURE_Return;
+}
+
+std::string _moduleInput::testOUT(){
+    return Values_raw;
 }
