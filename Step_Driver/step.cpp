@@ -9,18 +9,17 @@ void setup(){
 
 int main(void){
     
-    printf("RPI-Blink")
+    printf("RPI - MFL TEST")
 
     wiringSetup();
 
-    // Loop for steps
     for(;;){
-        digitalWrite(LED,1);
+        digitalWrite(stp,1);
         delay(500);
-        digitalWrite(LED,0);
+        digitalWrite(stp,0);
         delay(500);
     }
-
+    
     return 0;
 }
 
