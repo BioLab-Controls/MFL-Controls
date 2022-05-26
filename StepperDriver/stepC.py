@@ -7,14 +7,19 @@ import time as time
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(17,GPIO.OUT)
+GPIO.setup(18,GPIO.OUT)
+GPIO.setup(27,GPIO.OUT)
+GPIO.setup(22,GPIO.OUT)   
 
-while True:
+steps = [[1,1,0,0],[0,1,1,0],[0,0,1,1],[1,0,0,1]]
+pins = [17,18,27,22]
 
-        # initialization
-        GPIO.output(17,GPIO.HIGH)
-        time.sleep(1)
-        GPIO.output(17,GPIO.LOW)
-        time.sleep(1)
+for x in steps:
+        for y in steps:
+                if steps[x][y] == 1:
+                        GPIO.output(pins[y],GPIO.HIGH)
+                else:
+                        GPIO.output(pins[y],GPIO.LOW)
 
 GPIO.cleanup()
 
