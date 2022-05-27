@@ -8,11 +8,17 @@
 
 #include<iostream>
 #include <ctime>
-#include"../StepperDriver/stepB.h"
+#include<fstream>
+//#include"../StepperDriver/stepB.h"
 
 #define FLAG 0
 
+
 class _calibration {
+    private:
+        uint16_t calibStepsTaken = 0;
+        double databufferArray[360][2];
+        
     private:
         //- Run the valve from closed state to open state 
         uint8_t valveCycle(uint8_t degrees);
