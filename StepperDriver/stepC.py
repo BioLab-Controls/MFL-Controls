@@ -17,14 +17,15 @@ GPIO.setup(22,GPIO.OUT)
 steps = [[1,1,0,0],[0,1,1,0],[0,0,1,1],[1,0,0,1]]
 pins = [0,1,2,3]
 
-for x in steps:
-        for y in steps:
-                if steps[x][y] == 1:
-                        #GPIO.output(pins[y],GPIO.HIGH)
-                        DAQC.setDOUTbit(pins[y],7)
-                else:
-                        #GPIO.output(pins[y],GPIO.LOW)
-                        DAQC.setDOUTbit(pins[y],0)
+def repeat():
+        for x in range(4):
+                for y in range(4):
+                        if steps[x][y] == 1:
+                                #GPIO.output(0,pins[y]PIO.HIGH)
+                                DAQC.setDOUTbit(0,pins[y])
+                        else:
+                                #GPIO.output(0,pins[y]PIO.LOW)
+                                DAQC.setDOUTbit(0,pins[y])
 
 GPIO.cleanup()
 
