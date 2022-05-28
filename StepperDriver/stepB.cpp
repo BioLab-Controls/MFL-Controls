@@ -2,7 +2,7 @@
 
 _stepper::_stepper(){
     setup();
-    wiringPiSetup(void);
+    wiringPiSetup();
 }
 
 uint8_t _stepper::Step_process(uint8_t dir,uint8_t step){
