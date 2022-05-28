@@ -23,6 +23,7 @@ static const float stepAngle = 0.0883268076179f;
 
 // Default constructor
 StepperMotor::StepperMotor() {
+    wiringPiSetupGpio();
     running = false;
     threshold = 0;
     current_pos = 0;
