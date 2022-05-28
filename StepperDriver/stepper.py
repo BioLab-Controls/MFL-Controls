@@ -1,4 +1,4 @@
-import piplates.DAQCplate as DAQC
+import piplates.DAQC2plate as DAQC
 import time
 
 control_pins = [0,1,2,3]

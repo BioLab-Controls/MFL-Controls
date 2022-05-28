@@ -2,7 +2,7 @@
 
 import RPi.GPIO as GPIO
 import time as time
-import piplates.DAQCplate as DAQC
+import piplates.DAQC2plate as DAQC
 
 # setup
 GPIO.setmode(GPIO.BCM)
@@ -28,6 +28,7 @@ def repeat():
                                         #GPIO.output(0,pins[y]PIO.LOW)
                                         DAQC.setDOUTbit(0,pins[y])
 
+repeat()
 GPIO.cleanup()
 
 
