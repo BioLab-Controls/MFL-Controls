@@ -2,6 +2,7 @@
 
 _stepper::_stepper(){
     setup();
+    wiringPiSetupGpio();
 }
 
 uint8_t _stepper::Step_process(uint8_t dir,uint8_t step){
@@ -30,7 +31,7 @@ uint8_t _stepper::Step_process(uint8_t dir,uint8_t step){
 }
   
 void _stepper::setup(){
-     sm1.setGPIOutputs(Apin, Bpin, Cpin, Dpin);
+     sm.setGPIOutputs(Apin, Bpin, Cpin, Dpin);
 }
 
   uint8_t _stepper::rotateStepper(uint8_t dir,uint8_t deg){

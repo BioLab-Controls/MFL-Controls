@@ -23,6 +23,7 @@ static const float stepAngle = 0.0883268076179f;
 
 // Default constructor
 StepperMotor::StepperMotor() {
+    wiringPiSetupGpio();
     running = false;
     threshold = 0;
     current_pos = 0;
@@ -91,7 +92,7 @@ void StepperMotor::run(int direction, unsigned angle, unsigned speed) {
     td = (5 * 100 / (float) speed) * 1000;
 
     // Set the right number of steps to do, taking in account of the threshold
-    if(abs(current_pos + direction * angle) > threshold && threshold != 0)
+    if((current_pos + direction * angle) > threshold && threshold != 0)
         ndegrees = threshold - direction * current_pos;
     else ndegrees = angle;
 
