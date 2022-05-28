@@ -33,7 +33,6 @@ class _stepper {
         StepperMotor sm;
 
     private:
-        uint8_t wiringPiSetup(void);
 
         void setup();
 
