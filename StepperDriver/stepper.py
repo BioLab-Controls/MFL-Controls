@@ -19,6 +19,8 @@ for i in range(512):
       #GPIO.output(control_pins[pin], halfstep_seq[halfstep][pin])
       if(halfstep_seq[halfstep][pin] == 1):
         DAQC.setDOUTbit(0,control_pins[pin])
+      if(halfstep_seq[halfstep][pin] == 0):
+        DAQC.clrDOUTbit(0,control_pins[pin])
 
     time.sleep(0.001)
 
