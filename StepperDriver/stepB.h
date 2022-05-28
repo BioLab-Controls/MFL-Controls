@@ -4,6 +4,7 @@
 #include <iostream>
 #include <wiringPi.h>
 //#include"old/Step_Driver/temp.h"
+#include"StepperMotor.hpp"
 //#include"temp.h"
 
 // RPi GPIO | WiringPi
@@ -32,7 +33,6 @@ class _stepper {
         StepperMotor sm;
 
     private:
-        uint8_t wiringPiSetup(void);
 
         void setup();
 

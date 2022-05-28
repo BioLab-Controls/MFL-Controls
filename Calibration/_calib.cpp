@@ -1,5 +1,6 @@
 #include"_calib.h"
-_calibration(){
+
+_calibration::_calibration(){
     //Reset valve to fully open
     resetValve();
 }
@@ -49,7 +50,12 @@ uint8_t  _calibration::start_calibration(){
     for(uint8_t i = 0; i < 360; i++){
         valveCycle(i);
         //delay
+        calibStepsTaken += 1;
+        auto current_time = pushTime();
         //Store valve pos + time
+        databufferArray[calibStepsTaken][0] = calibStepsTaken;
+        databufferArray[calibStepsTaken][1] = current_time;
     }
-    
+    outputToCSV();
+    return 0;
 }
