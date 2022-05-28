@@ -15,9 +15,9 @@
     // GPIO 22  |    3
 
 #define Apin 0
-#define Bpin 1
+#define Bpin 5
 #define Cpin 2
-#define Dpin 3
+#define Dpin 4
 
 #define CLOCKWISE 1
 #define ANTICLOCKWISE 0
