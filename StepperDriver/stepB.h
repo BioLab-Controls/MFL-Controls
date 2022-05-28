@@ -30,7 +30,7 @@ class _stepper {
         uint8_t pins[4] = {1,2,3,4};
 
         // StepperMotor object declaration
-        StepperMotor sm;
+        //StepperMotor sm;
 
     private:
         uint8_t wiringPiSetup(void);
