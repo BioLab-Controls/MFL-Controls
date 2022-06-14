@@ -10,7 +10,7 @@ delay = 0.001;
 target = arduino('COM4', 'Uno', 'Libraries', 'SPI');
 
 function main()
-    while True:
+    while True
         %Get Data
         speed = getData(SPI_PIN_NO);
         %Push
@@ -18,12 +18,12 @@ function main()
     end
 end
 
-function getData(port)
+function output = getData(port)
     d_pot = device(target, 'SPIChipSelectPin', 'SPI_PIN_NO');
     readCmd = bin2dec('0000 0011');
     dataIn = [readCmd address zeros(1,2)];
     out = writeRead(target,dataIn);
-    return out
+    output = out;
 end
 
 function StepperSpin(direction,steps)
