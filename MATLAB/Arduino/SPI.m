@@ -10,43 +10,45 @@ delay = 0.001;
 target = arduino('COM4', 'Uno', 'Libraries', 'SPI');
 
 function main()
+
     while True
         %Get Data
         speed = getData(SPI_PIN_NO);
         %Push
-        StepperSpin(1,speed);
+        StepperSpin(1, speed);
     end
+
 end
 
 function output = getData(port)
     d_pot = device(target, 'SPIChipSelectPin', 'SPI_PIN_NO');
     readCmd = bin2dec('0000 0011');
-    dataIn = [readCmd address zeros(1,2)];
-    out = writeRead(target,dataIn);
+    dataIn = [readCmd address zeros(1, 2)];
+    out = writeRead(target, dataIn);
     output = out;
 end
 
-function StepperSpin(direction,steps)
-    if direction == 0:%ANTICLOCKWISE
+function StepperSpin(direction, steps)
+
+    if direction == 0 %ANTICLOCKWISE
         %Set direction Pin HIGH = CLOCKWISE LOW = ANTICLOCKWISE
-        writeDigitalPin(target,dirPin,LOW);
+        writeDigitalPin(target, dirPin, LOW);
         %Spin
         for i = 0:steps
-            writeDigitalPin(target,stepPin,HIGH);
+            writeDigitalPin(target, stepPin, HIGH);
             pause(delay)
-            writeDigitalPin(target,stepPin,LOW);
+            writeDigitalPin(target, stepPin, LOW);
             pause(delay)
         end
 
-    end
-    if direction == 1: %CLOCKWISE
+    elseif direction == 1 %CLOCKWISE
         %Set direction Pin HIGH = CLOCKWISE | LOW = ANTICLOCKWISE
-        writeDigitalPin(target,dirPin,HIGH);
-          %Spin
-          for i = 0:steps
-            writeDigitalPin(target,stepPin,HIGH);
+        writeDigitalPin(target, dirPin, HIGH);
+        %Spin
+        for i = 0:steps
+            writeDigitalPin(target, stepPin, HIGH);
             pause(delay)
-            writeDigitalPin(target,stepPin,LOW);
+            writeDigitalPin(target, stepPin, LOW);
             pause(delay)
         end
 
