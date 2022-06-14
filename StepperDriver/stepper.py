@@ -1,7 +1,7 @@
 import piplates.DAQC2plate as DAQC
 import time
 
-control_pins = [0,1,2,3]
+control_pins = [4,5,6,7]
 
 halfstep_seq = [
   [1,0,0,0],
