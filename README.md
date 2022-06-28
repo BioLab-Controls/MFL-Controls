@@ -8,10 +8,5 @@
     - Drive the motors
 
 <p align = "center">
-<img src = "https://github.com/nyameaama/Converse-Engine/blob/master/assets/A-OneSpace%20Logo.png" width = "195" height = "195"/>
-</p>
-
-
-<p align = "center">
-<img src = "https://github.com/nyameaama/Converse-Engine/blob/master/assets/A-OneSpace%20Logo.png" width = "195" height = "195"/>
+<img src = "https://github.com/BioLab-Controls/MFL-Controls/blob/main/assets/MFL-1.png" width = "195" height = "195"/>
 </p>
