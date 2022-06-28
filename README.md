@@ -8,5 +8,5 @@
     - Drive the motors
 
 <p align = "center">
-<img src = "https://github.com/BioLab-Controls/MFL-Controls/blob/main/assets/MFL-1.png" width = "195" height = "195"/>
+<img src = "https://github.com/BioLab-Controls/MFL-Controls/blob/main/assets/MFL-1.png" width = "700" height = "500"/>
 </p>
