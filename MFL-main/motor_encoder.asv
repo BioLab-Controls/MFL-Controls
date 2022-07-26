@@ -81,7 +81,6 @@ end
 
 function pushToStorage(valveID,value)
     assignment = ["1","MFL-1.txt","2","MFL-2.txt"];
-    mkdir mfldir;
     fileIndex = assignment(find(assignment == string(valveID)) + 1);
     fileID = fopen(fileIndex,'w');
     nbytes = fprintf(fileID,value);
@@ -90,10 +89,9 @@ end
 
 function val = retrieveFromStorage(valveID)
     assignment = ["1","MFL-1.txt","2","MFL-2.txt"];
-    mkdir mfldir;
     fileIndex = assignment(find(assignment == string(valveID)) + 1);
     formatSpec = '%f';
-    fileID = fopen(fileIndex,'r+');
+    fileID = fopen(fileIndex,'r');
     input = fscanf(fileID,formatSpec);
     fclose(fileID);
     val = input;
