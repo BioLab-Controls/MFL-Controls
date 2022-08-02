@@ -98,7 +98,7 @@ function calibrateToZero(valveID)
 end
 
 function pushToStorage(valveID,value)
-    assignment = ["1","MFL-1.txt","2","MFL-2.txt","3","MFL-1.txt","4","MFL-2.txt","5","MFL-1.txt","6","MFL-2.txt"];
+    assignment = ["1","MFL-1.txt","2","MFL-2.txt","3","MFL-3.txt","4","MFL-4.txt","5","MFL-5.txt","6","MFL-6.txt"];
     dir = "mfldir/";
     if ~exist("mfldir", 'dir')
        mkdir mfldir;
