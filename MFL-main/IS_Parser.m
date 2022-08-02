@@ -1,6 +1,7 @@
 %Parser for instruction set
 
 function IS_Parser(instruction_set)
+    %Main
    parserLoop(instruction_set);
 end
 
@@ -8,7 +9,7 @@ function outputToStepper(valveID,valvePosition)
     %Get steps to destination form HLVP converter
     stepsTo = HLVP_converter(valvePosition);
     %Output steps to driver
-
+    motorDriver(valveID, stepsTo);
 end
 
 function parserLoop(instruction_set)
@@ -21,6 +22,7 @@ function parserLoop(instruction_set)
         valveID = instruction_set(iter);
         %Get valve position
         valvePosition = instruction_set(iter + 1);
+        %Push to stepper driver
         outputToStepper(valveID,valvePosition);
     end
 end

@@ -1,14 +1,14 @@
 % Converts valve position in range from 0(OPEN) and 255 (CLOSED) to motor
 %increment steps from current position to desired step position
 
-function stepsToDestination = HLVP_converter(valveID,valvePosition)
+function stepsXToDestination = HLVP_converter(valveID,valvePosition)
     %Get
     steps = returnCurrentStep(valveID);
     %Map valve position to steps full cycle rotation
     map = mapValues(valvePosition);
     %Return number of steps to destination position
     sTD = stepsToDestination(steps, map);
-    stepsToDestination = sTD;
+    stepsXToDestination = sTD;
 end
 
 function current = returnCurrentStep(valveID)
