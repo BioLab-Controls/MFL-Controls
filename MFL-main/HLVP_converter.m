@@ -6,9 +6,13 @@ function stepsXToDestination = HLVP_converter(valveID,valvePosition)
     steps = returnCurrentStep(valveID);
     %Map valve position to steps full cycle rotation
     map = mapValues(valvePosition);
+    
     %Return number of steps to destination position
     sTD = stepsToDestination(steps, map);
     stepsXToDestination = sTD;
+    
+    %Update encoder position
+    updateEncoderPosition(valveID,sTD);
 end
 
 function current = returnCurrentStep(valveID)
@@ -16,6 +20,11 @@ function current = returnCurrentStep(valveID)
     %Get current step position as position from calibrated ZERO
     currentStepPosition = motor_encoder(INCREMENT,valveID,0);
     current = currentStepPosition;
+end
+
+function updateEncoderPosition(valveID,pos)
+    INCREMENT = 1;
+    motor_encoder(INCREMENT,valveID,pos);
 end
 
 function val = mapValues(valvePosition)

@@ -105,7 +105,7 @@ function pushToStorage(valveID,value)
     end
     fileIndex = assignment(find(assignment == string(valveID)) + 1);
     formatSpec = '%f';
-    fileID = fopen(strcat(dir,fileIndex),'wt');
+    fileID = fopen(strcat(dir,fileIndex),'a');
     nbytes = fprintf(formatSpec,fileID,value);
     fclose(fileID);
 end
