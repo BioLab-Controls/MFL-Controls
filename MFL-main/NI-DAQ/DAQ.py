@@ -1,6 +1,7 @@
+from random import random
 import time
-import nidaqmx
-from nidaqmx.constants import(LineGrouping)
+#import nidaqmx
+#from nidaqmx.constants import(LineGrouping)
 #from numpy import promote_types
 import csv
 
@@ -14,24 +15,25 @@ def main():
     for i in range(no_of_valves):
         #Get flow data
         port = assignValveToPort(FLOW,i)
-        flowVal = RetrieveData(port)
+        flowVal = temp(port2) #RetrieveData(port)
         #Get pressure data
         port2 = assignValveToPort(PRESSURE,i)
-        pressureVal = RetrieveData(port2)
+        pressureVal = temp(port2) #RetrieveData(port2)
         #Push to spreadsheet
         dataPoints = [flowVal,pressureVal]
+        print(dataPoints)
         pushToSpreadsheet(i,dataPoints)
 
 
-def dataCollectAtPort(port):
-    task = nidaqmx.Task()
-    task.di_channels.add_di_chan(port)
-    task.start()
-    #Read and update 
-    value = task.read()
+#def dataCollectAtPort(port):
+#    task = nidaqmx.Task()
+#    task.di_channels.add_di_chan(port)
+#    task.start()
+#    #Read and update 
+#    value = task.read()
 
-    task.stop
-    task.close()
+#    task.stop
+#    task.close()
     
 
 def RetrieveData(port):
@@ -40,6 +42,8 @@ def RetrieveData(port):
     #Get value and return to calling func
     return value
 
+def temp(port):
+    return random.randrange(10)
 
 def assignValveToPort(type,valve):
     #Pin assignment
@@ -63,6 +67,8 @@ def pushToSpreadsheet(valve,data):
     #Separate buffer
     fdata = data[0]
     pdata = data[1]
+    print(fdata)
+    print(pdata)
     #Get file
     files = ["dataValve-1.csv","dataValve-2.csv","dataValve-3.csv","dataValve-4.csv","dataValve-5.csv","dataValve-6.csv"]
     #Open and write
