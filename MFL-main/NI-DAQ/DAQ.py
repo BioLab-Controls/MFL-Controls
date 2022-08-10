@@ -1,8 +1,8 @@
 from random import random
 import time
-#import nidaqmx
-#from nidaqmx.constants import(LineGrouping)
-#from numpy import promote_types
+import nidaqmx
+from nidaqmx.constants import(LineGrouping)
+from numpy import promote_types
 import csv
 
 value = 0
@@ -15,25 +15,24 @@ def main():
     for i in range(no_of_valves):
         #Get flow data
         port = assignValveToPort(FLOW,i)
-        flowVal = temp(port2) #RetrieveData(port)
+        flowVal = RetrieveData(port)
         #Get pressure data
         port2 = assignValveToPort(PRESSURE,i)
-        pressureVal = temp(port2) #RetrieveData(port2)
+        pressureVal = RetrieveData(port2)
         #Push to spreadsheet
         dataPoints = [flowVal,pressureVal]
         print(dataPoints)
         pushToSpreadsheet(i,dataPoints)
 
 
-#def dataCollectAtPort(port):
-#    task = nidaqmx.Task()
-#    task.di_channels.add_di_chan(port)
-#    task.start()
-#    #Read and update 
-#    value = task.read()
-
-#    task.stop
-#    task.close()
+def dataCollectAtPort(port):
+    task = nidaqmx.Task()
+    task.di_channels.add_di_chan(port)
+    task.start()
+    #Read and update 
+    value = task.read()
+    task.stop
+    task.close()
     
 
 def RetrieveData(port):
@@ -53,12 +52,12 @@ def assignValveToPort(type,valve):
     #Get flow data for the valve
     if type == 0:
         valves_Ports_FLOW = ["Dev1/port1/line1","Dev1/port1/line2"]; # pins
-        return valves_Ports_FLOW(valve - 1)
+        return valves_Ports_FLOW[valve - 1]
 
-    #Get pressure data for the valve
+    #Get pressure data for the valve 
     if type == 1:
         valves_Ports_PRESSURE = ["Dev1/port2/line1","Dev1/port2/line2"]; # pins
-        return valves_Ports_PRESSURE(valve - 1)
+        return valves_Ports_PRESSURE[valve - 1]
 
     #Return 0 if conditional fails
     return 0
@@ -76,3 +75,5 @@ def pushToSpreadsheet(valve,data):
         writer = csv.writer(f)
         writer.writerow(fdata)
         writer.writerow(pdata)
+
+main()
