@@ -64,8 +64,8 @@ def assignValveToPort(type,valve):
 
 def pushToSpreadsheet(valve,data):
     #Separate buffer
-    fdata = data[0]
-    pdata = data[1]
+    fdata = str(data[0])
+    pdata = str(data[1])
     print(fdata)
     print(pdata)
     #Get file
@@ -73,7 +73,6 @@ def pushToSpreadsheet(valve,data):
     #Open and write
     with open(files[valve - 1], 'w', encoding='UTF8') as f:
         writer = csv.writer(f)
-        writer.writerow(fdata)
-        writer.writerow(pdata)
+        writer.writerows(zip(fdata,pdata))
 
 main()
