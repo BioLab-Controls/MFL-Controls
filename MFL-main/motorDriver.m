@@ -7,11 +7,11 @@ function motorDriver(valveID, steps)
     %Config
     duty = 0.5;
     frequency = 400;
-    set = setMotorProperties(pin1,pin2,duty,frequency);
+    %set = setMotorProperties(pin1,pin2,duty,frequency);
     %Delay between each step
     delay = 0.000001;
     %Driver
-    driveMtr(pin1,steps,delay,set,frequency,duty);
+    %driveMtr(pin1,steps,delay,set,frequency,duty);
 end
 
 function driveMtr(pin, steps,delay,pi,frequency,duty)
@@ -30,8 +30,12 @@ function prop = setMotorProperties(pin1,pin2, dutyC, freq)
     %Raspberry Pi Object
     pi = raspi();
 
+    %Step and direction pins
     configurePin(pi,pin2,'DigitalOutput');
     configurePin(pi,pin1,'PWM');
+    
+    %Stop pin
+    configurePin(pi,0,'DigitalOutput');
     
     writePWMDutyCycle(pi, pin1, dutyC);
     writePWMFrequency(pi, pin1, freq);
@@ -48,6 +52,6 @@ function pinR = AssignIDtoPin(valveID)
 end
 
 function stopMovement(pi)
-
-
+    stopPin = 0;
+    writeDigitalPin(pi,stopPin,0);
 end

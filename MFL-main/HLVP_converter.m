@@ -2,11 +2,20 @@
 %increment steps from current position to desired step position
 
 function stepsXToDestination = HLVP_converter(valveID,valvePosition)
+    if valvePosition > 255
+        error("VALVE POSITION RANGE ERROR - CHECK CALIBRATION DATA");
+    end
     %Get
     steps = returnCurrentStep(valveID);
     %Map valve position to steps full cycle rotation
     map = mapValues(valvePosition);
     
+    %If last commanded value is the same as current do not send anything 
+    %to the motor
+    if round(steps,4) == round(map,4)
+        stepsXToDestination = NaN;
+        return;
+    end
     %Return number of steps to destination position
     sTD = stepsToDestination(steps, map);
     stepsXToDestination = sTD;

@@ -64,8 +64,9 @@ function pos = encoderReturnPosition(task,valveID,newSteps)
     end
 
     if task ~= CALIBRATE || task ~= INCREMENT
-       error("Invalid task for motor encoder");
        pos = 0;
+       error("Invalid task for motor encoder");
+       
     end
     
 end
@@ -104,9 +105,11 @@ function pushToStorage(valveID,value)
        mkdir mfldir;
     end
     fileIndex = assignment(find(assignment == string(valveID)) + 1);
-    formatSpec = '%f';
-    fileID = fopen(strcat(dir,fileIndex),'a');
-    nbytes = fprintf(formatSpec,fileID,value);
+    formatSpec = '%3d';
+    s = strcat(dir,fileIndex);
+    fileID = fopen(strcat(dir,fileIndex),'wt');
+    M = [value];
+    writematrix(M,s);
     fclose(fileID);
 end
 
@@ -117,7 +120,7 @@ function val = retrieveFromStorage(valveID)
        mkdir mfldir;
     end
     fileIndex = assignment(find(assignment == string(valveID)) + 1);
-    formatSpec = '%f';
+    formatSpec = '%f\n';
     [fileID,msg] = fopen(strcat(dir,fileIndex),'r+');
     input = fscanf(fileID,formatSpec);
     fclose(fileID);

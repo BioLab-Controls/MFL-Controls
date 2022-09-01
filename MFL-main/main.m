@@ -13,6 +13,9 @@ for k = 1:no_of_valves
     dataPointsPRESSURE(k) = ValveData(2);
 end
 
+disp("Most Recent Flow : " + dataPointsFLOW);
+disp("Most Recent Pressure : " + dataPointsPRESSURE);
+
 %Calibration function / Valve Order Assignment
 %For each value lets assign a value and create an instruction set
 instructionSet = [];
