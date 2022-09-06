@@ -5,7 +5,7 @@ function result = ValveAssignment(flowData, pressureData)
     %Assign position for flow calibration curve
     result = assignPosition(flowData,flowdataCalib);
     %Assign position for position curve
-    assignPosition(pressureData,PressuredataCalib);
+%     assignPosition(pressureData,PressuredataCalib);
     %Use both the flow position and pressure position to check if
     %position is within 5% diff off each other, if so use average else
     %use flow

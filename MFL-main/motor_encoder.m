@@ -124,5 +124,9 @@ function val = retrieveFromStorage(valveID)
     [fileID,msg] = fopen(strcat(dir,fileIndex),'r+');
     input = fscanf(fileID,formatSpec);
     fclose(fileID);
-    val = input;
+    if isempty(input)
+        error("DATA READ CONFLICT - RUN PROGRAM AGAIN");
+    else
+        val = input;
+    end
 end

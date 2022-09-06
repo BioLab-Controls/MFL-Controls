@@ -13,6 +13,8 @@ function outputToStepper(valveID,valvePosition)
     if ~isnan(stepsTo)
         disp("Steps Output : " + stepsTo);
         motorDriver(valveID, stepsTo);
+    else
+        disp("WARNING - LAST COMMANDED VALUE IS EQUAL TO CURRENT VALUE - NO INSTRUCTION SENT TO MOTOR");
     end
 end
 

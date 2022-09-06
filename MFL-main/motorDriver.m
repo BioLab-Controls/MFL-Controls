@@ -7,13 +7,13 @@ function motorDriver(valveID, steps)
     %Config
     duty = 0.5;
     frequency = 400;
-    set = setMotorProperties(pin1,pin2,duty,frequency);
+%     set = setMotorProperties(pin1,pin2,duty,frequency);
     %Delay between each step
     delay = 0.000001;
     %Driver
     t = stepsToTime(abs(steps))
     disp(t)
-    driveMtr(pin1,steps,delay,set,frequency,duty,t,0);
+%     driveMtr(pin1,steps,delay,set,frequency,duty,t,0);
 end
 
 function driveMtr(pin, steps,delay,pi,frequency,duty,time,tally)
