@@ -1,3 +1,0 @@
-r = raspi;
-
-disp(r)

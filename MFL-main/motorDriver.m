@@ -1,29 +1,41 @@
 function motorDriver(valveID, steps)
     %Assign
-%     pin = AssignIDtoPin(valveID);
+    pin = AssignIDtoPin(valveID);
     pin1 = 17;
     pin2 = 27;
     disp(pin1);
     %Config
     duty = 0.5;
     frequency = 400;
-    %set = setMotorProperties(pin1,pin2,duty,frequency);
+    set = setMotorProperties(pin1,pin2,duty,frequency);
     %Delay between each step
     delay = 0.000001;
     %Driver
-    %driveMtr(pin1,steps,delay,set,frequency,duty);
+    t = stepsToTime(abs(steps))
+    disp(t)
+    driveMtr(pin1,steps,delay,set,frequency,duty,t,0);
 end
 
-function driveMtr(pin, steps,delay,pi,frequency,duty)
-    %Output signal to stepper n times to increment motor
-%     for i = 0: steps
-%         writeDigitalPin(pi,pin,1);
-%         pause(delay);
-%     end
-    writeDigitalPin(pi,27,0);
+function driveMtr(pin, steps,delay,pi,frequency,duty,time,tally)
+    
+    tStart = tic;
 
+    writeDigitalPin(pi,27,0);
+    writeDigitalPin(pi,22,1);
     writePWMFrequency(pi,pin,frequency);
     writePWMDutyCycle(pi,pin,duty);
+
+    tEnd = toc(tStart);
+
+    dur = tally + tEnd;
+
+    if dur < time
+        disp(dur)
+        driveMtr(pin, steps,delay,pi,frequency,duty,time,dur)
+    else
+        writeDigitalPin(pi,22,0);
+    end
+
 end
 
 function prop = setMotorProperties(pin1,pin2, dutyC, freq)
@@ -35,7 +47,7 @@ function prop = setMotorProperties(pin1,pin2, dutyC, freq)
     configurePin(pi,pin1,'PWM');
     
     %Stop pin
-    configurePin(pi,0,'DigitalOutput');
+    configurePin(pi,22,'DigitalOutput');
     
     writePWMDutyCycle(pi, pin1, dutyC);
     writePWMFrequency(pi, pin1, freq);
@@ -52,6 +64,13 @@ function pinR = AssignIDtoPin(valveID)
 end
 
 function stopMovement(pi)
-    stopPin = 0;
+    stopPin = 22;
     writeDigitalPin(pi,stopPin,0);
+end
+
+function result = stepsToTime(steps)
+    stepsPerSec = 400;
+    temp1 = steps * 1;
+    val = 1 / temp1;
+    result = val;
 end

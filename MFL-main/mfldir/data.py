@@ -19,7 +19,7 @@ def pushToSpreadsheet(valve,data):
         
 def generateRandom():
     #Random flow
-    flow = r2.randint(1,25)
+    flow = r2.randint(1,200)
     print(flow)
     #Random Pressure
     pres = r2.randint(1,10)
